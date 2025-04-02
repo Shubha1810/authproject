@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  user_project:
+    build:
+      context: ./userproject
+      dockerfile: Dockerfile
+    container_name: user_app_1
+    ports:
+      - "4000:4000"
+    volumes:
+      - "C:/Users/SHUBHA/PycharmProjects/training/userproject:/app"
+    environment:
+      - FLASK_ENV=development
+
+  auth_service:
+    build:
+      context: ./auth_service
+      dockerfile: Dockerfile
+    container_name: auth_service_container
+    ports:
+      - "5000:5000"
+    volumes:
+      - "./auth_service:/app"
+    depends_on:
+      user_project:
+        condition: service_started
