@@ -9,7 +9,7 @@ services:
     ports:
       - "4000:4000"
     volumes:
-      - "C:/Users/SHUBHA/PycharmProjects/training/userproject:/app"
+      - ./userproject:/app
     environment:
       - FLASK_ENV=development
 
@@ -21,7 +21,7 @@ services:
     ports:
       - "5000:5000"
     volumes:
-      - "./auth_service:/app"
+      - ./auth_service:/app
     depends_on:
       user_project:
         condition: service_started
